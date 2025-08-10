@@ -20,4 +20,44 @@ On-order treatment: In-transit / factory orders are not automatically deducted f
 
 Monte Carlo: Optional; 100,000 draws per SKU to estimate a robust max level at 95th percentile demand.
 
+Math
 
+Safety Stock (SS)
+SS = Z × σ × √L
+
+Lead Time Demand (LTD)
+LTD = D̄ × L
+
+Max Level (policy target)
+Max Level = LTD + SS
+
+Monte Carlo Max 
+Simulate Di ~ N(D̄, σ) across months; take the 95th percentile of cumulative demand over L to set a probabilistic max.
+
+
+App Features
+Flexible cycles: Order every 1 / 2 / 4 months.
+
+Reorder check: Order on the cycle month if starting inventory ≤ reorder point.
+
+Understock tolerance: Flag risk when ending inventory falls below:
+
+Threshold = LTD × (1 − Tolerance%)
+
+On-order arrivals: Enter comma-separated monthly arrivals for in-transit and factory — they’re added to the respective months.
+
+Pack-size rounding: Round orders up to the nearest pack size.
+
+Visuals
+Ending inventory (bar, colour-coded by flag)
+
+Order quantities by month
+
+Flags
+Stockout: ending < 0
+
+Understock Risk: 0 ≤ ending < threshold
+
+Normal: threshold ≤ ending ≤ reorder point
+
+Overstock: ending > reorder point
